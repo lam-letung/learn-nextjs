@@ -1,11 +1,25 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import Router from 'next/router'
+import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router = useRouter();
+  function handler() {
+    Router.push({
+      pathname: '/posts/[postId]',
+      query: {
+        postId: '123',
+        param: 'postId'
+      }
+
+    })
+  }
   return (
     <>
       <Head>
@@ -16,6 +30,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
+          <Link href="/about">
+            Go to about
+          </Link>
+          <button onClick={handler}>Submit</button>
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>pages/index.tsx</code>
@@ -36,6 +54,7 @@ export default function Home() {
                 priority
               />
             </a>
+
           </div>
         </div>
 
